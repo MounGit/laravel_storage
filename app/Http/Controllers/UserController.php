@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -54,9 +55,10 @@ class UserController extends Controller
         $user->email_verified_at = $request->email_verified_at;
         $user->password = $request->password;
         $user->birth_date = $request->birth_date;
-        $user->pp_url = $request->pp_url;
+        $user->pp_url = $request->file('pp_url')->hashName();
+        $request->file('pp_url')->storePublicly('img', 'public');
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'The success message!');
     }
 
     /**
@@ -100,6 +102,7 @@ class UserController extends Controller
             "birth_date" => "required",
             "pp_url" => "required",
         ]);
+        Storage::disk('public')->delete(('img/' . $user->pp_url));
         $user->name = $request->nom;
         $user->firstname = $request->firstname;
         $user->age = $request->age;
@@ -107,9 +110,9 @@ class UserController extends Controller
         $user->email_verified_at = $request->email_verified_at;
         $user->password = $request->password;
         $user->birth_date = $request->birth_date;
-        $user->pp_url = $request->pp_url;
+        $user->pp_url = $request->file('pp_url')->hashName();
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'The success message!');
     }
 
     /**
@@ -120,6 +123,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Storage::disk('public')->delete(('img/' . $user->pp_url));
         $user->delete();
         return redirect()->route('users.index');
     }

@@ -16,6 +16,12 @@
         </div>
     @endif
 
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+    @endif
+
 <form class="d-flex flex-column w-75" enctype="multipart/form-data" action="{{route('users.store')}}" method="post">
     @csrf
     
@@ -23,7 +29,7 @@
     <input value="{{old('name')}}" type="text" name="name" id="name">
     
     <label for="firstname">Prénom : </label>
-    <textarea value="{{old('firstname')}}" name="firstname" id="firstname" cols="30" rows="10"></textarea>
+    <input value="{{old('firstname')}}" name="firstname" id="firstname">
     
     <label for="age">Age : </label>
     <input value="{{old('age')}}" type="number" min="0" max="100" name="age" id="age">

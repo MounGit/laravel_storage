@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -44,13 +45,14 @@ class ArticleController extends Controller
             "url" => "required",
         ]);
         $article = new Article;
+        $article->url = $request->file('url')->hashName();
         $article->name = $request->nom;
         $article->description = $request->description;
         $article->date = $request->date;
         $article->author = $request->author;
-        $article->url = $request->age;
+        $request->file('url')->storePublicly('img', 'public');
         $article->save();
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('message', 'The success message!');
     }
 
     /**
@@ -91,13 +93,14 @@ class ArticleController extends Controller
             "author" => "required",
             "url" => "required",
         ]);
+        Storage::disk('public')->delete(('img/' . $article->url));
         $article->name = $request->nom;
         $article->description = $request->description;
         $article->date = $request->date;
         $article->author = $request->author;
-        $article->url = $request->age;
+        $article->url = $request->file('url')->hashName();
         $article->save();
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('message', 'The success message!');
     }
 
     /**
@@ -108,6 +111,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        Storage::disk('public')->delete(('img/' . $article->url));
         $article->delete();
         return redirect()->route('articles.index');
     }

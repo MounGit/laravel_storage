@@ -16,7 +16,13 @@
         </div>
     @endif
 
-<form class="d-flex flex-column w-75" action="{{route('articles.store')}}" method="post">
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+    @endif
+
+<form class="d-flex flex-column w-75" enctype="multipart/form-data" action="{{route('articles.store')}}" method="post">
     @csrf
     <label for="name">Nom : </label>
     <input value="{{old('name')}}" type="text" name="name" id="name">
@@ -27,7 +33,7 @@
     <label for="author">Auteur : </label>
     <input value="{{old('author')}}" type="text" name="author" id="author">
     <label for="url">Url : </label>
-    <input value="{{old('url')}}" type="text" name="url" id="url">
+    <input value="{{old('url')}}" type="file" name="url" id="url">
     <button class="btn btn-warning w-25 mt-3" type="submit">Ajouter</button>
 </form>
 </section>

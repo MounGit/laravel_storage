@@ -26,7 +26,9 @@
                 <td>{{$data->description}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->author}}</td>
-                <td>{{$data->url}}</td>
+                <td>
+                    <img src="{{asset('img/'.$data->url)}}" style="width: 40px; height: 30px" alt="">
+                </td>
                 <td class="d-flex justify-content-evenly">
                     <a class="btn btn-primary" href="{{route('articles.edit', $data->id)}}">Modifier</a>
                     <a class="btn btn-warning" href="{{route('articles.show', $data->id)}}">Détails</a>

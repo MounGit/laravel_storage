@@ -16,7 +16,13 @@
         </div>
     @endif
 
-<form class="d-flex flex-column w-75" action="{{route('articles.update', $article->id)}}" method="post">
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+    @endif
+
+<form class="d-flex flex-column w-75" enctype="multipart/form-data" action="{{route('articles.update', $article->id)}}" method="post">
     @csrf
     @method('PUT')
     <label for="name">Nom : </label>
@@ -28,8 +34,8 @@
     <label for="author">Auteur : </label>
     <input  value="{{$article->author}}" type="text" name="author" id="author">
     <label for="url">Url : </label>
-    <input  value="{{$article->url}}" type="text" name="url" id="url">
-    <button class="btn btn-warning w-25 mt-3" type="submit">Ajouter</button>
+    <input  value="{{$article->url}}" type="file" name="url" id="url">
+    <button class="btn btn-warning w-25 mt-3" type="submit">Modifier</button>
 </form>
 </section>
 @endsection
