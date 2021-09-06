@@ -16,11 +16,7 @@
         </div>
     @endif
 
-    @if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session()->get('message') }}
-    </div>
-    @endif
+
 
 <form class="d-flex flex-column w-75" enctype="multipart/form-data" action="{{route('users.store')}}" method="post">
     @csrf
@@ -35,11 +31,11 @@
     <input value="{{old('age')}}" type="number" min="0" max="100" name="age" id="age">
     
     <label for="email">Email : </label>
-    <input value="{{old('email')}}" type="email" name="email" id="email">
+    <input value="{{old('email')}}" type="text" name="email" id="email">
     
-    <label for="email_verified_at">Confirmation email : </label>
-    <input value="{{old('email_verified_at')}}" type="email" name="email_verified_at" id="email_verified_at">
-    
+    {{-- <label for="email_verified_at">Confirmation email : </label>
+    <input value="{{old('email_verified_at')}}" type="text" name="email_verified_at" id="email_verified_at">
+     --}}
     <label for="password">Mot de passe : </label>
     <input type="password" name="password" id="password">
 

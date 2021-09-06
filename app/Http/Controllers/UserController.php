@@ -42,7 +42,6 @@ class UserController extends Controller
             "firstname" => "required",
             "age" => "required",
             "email" => "required",
-            "email_verified_at" => "required",
             "password" => "required",
             "birth_date" => "required",
             "pp_url" => "required",
@@ -52,7 +51,6 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->age = $request->age;
         $user->email = $request->email;
-        $user->email_verified_at = $request->email_verified_at;
         $user->password = $request->password;
         $user->birth_date = $request->birth_date;
         $user->pp_url = $request->file('pp_url')->hashName();
@@ -97,7 +95,6 @@ class UserController extends Controller
             "firstname" => "required",
             "age" => "required",
             "email" => "required",
-            "email_verified_at" => "required",
             "password" => "required",
             "birth_date" => "required",
             "pp_url" => "required",
@@ -107,7 +104,6 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->age = $request->age;
         $user->email = $request->email;
-        $user->email_verified_at = $request->email_verified_at;
         $user->password = $request->password;
         $user->birth_date = $request->birth_date;
         $user->pp_url = $request->file('pp_url')->hashName();

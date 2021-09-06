@@ -28,7 +28,7 @@
     <label for="name">Nom : </label>
     <input value="{{$article->name}}" type="text" name="name" id="name">
     <label for="description">Description : </label>
-    <textarea  value="{{$article->description}}" name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10">{{$article->description}}</textarea>
     <label for="date">Date : </label>
     <input  value="{{$article->date}}" type="date" name="date" id="date">
     <label for="author">Auteur : </label>

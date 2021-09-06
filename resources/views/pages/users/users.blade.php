@@ -2,6 +2,11 @@
 
 @section('content')
 <section class="container">
+  @if(session()->has('message'))
+  <div class="alert alert-success">
+      {{ session()->get('message') }}
+  </div>
+  @endif
   <div class="d-flex justify-content-center">
     <a class="btn btn-success mb-5" href="{{route('users.create')}}">Ajouter un utilisateur</a>
 </div>

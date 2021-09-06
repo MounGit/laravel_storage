@@ -46,7 +46,7 @@ class ArticleController extends Controller
         ]);
         $article = new Article;
         $article->url = $request->file('url')->hashName();
-        $article->name = $request->nom;
+        $article->name = $request->name;
         $article->description = $request->description;
         $article->date = $request->date;
         $article->author = $request->author;

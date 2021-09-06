@@ -16,18 +16,14 @@
         </div>
     @endif
 
-    @if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session()->get('message') }}
-    </div>
-    @endif
+
 
 <form class="d-flex flex-column w-75" enctype="multipart/form-data" action="{{route('articles.store')}}" method="post">
     @csrf
     <label for="name">Nom : </label>
     <input value="{{old('name')}}" type="text" name="name" id="name">
     <label for="description">Description : </label>
-    <textarea value="{{old('description')}}" name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10">{{old('description')}}</textarea>
     <label for="date">Date : </label>
     <input value="{{old('date')}}" type="date" name="date" id="date">
     <label for="author">Auteur : </label>
